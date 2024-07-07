@@ -9,7 +9,7 @@ import 'package:movie_app/domain/usecases/get_top_rated_movies.dart';
 import 'get_popular_movies_test.mocks.dart';
 
 
-@GenerateNiceMocks([MockSpec<MovieRepository>()])
+// @GenerateNiceMocks([MockSpec<MovieRepository>()])
 
 void main() {
 
