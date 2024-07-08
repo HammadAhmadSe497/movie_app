@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:mockito/mockito.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:movie_app/domain/entities/movie.dart';
@@ -21,7 +22,7 @@ late   MockMovieRepository mockMovieRepository;
     mockMovieRepository = MockMovieRepository();
     usecase = GetPopularMovies(mockMovieRepository);
   });
- final tMoviesList = [
+ final tMovieList = [
     Movie(
       id: 1,
       title: 'Movie 1',
@@ -37,15 +38,15 @@ late   MockMovieRepository mockMovieRepository;
   ];
 
 
-  test('should get popular movies from the repository', () async {
-    when(mockMovieRepository.getPopularMovies())
-        .thenAnswer((_) async => tMoviesList);
-    // act
-    final result = await usecase();
-    // assert
-    expect(result, tMoviesList);
-    verify(mockMovieRepository.getPopularMovies());
-    verifyNoMoreInteractions(mockMovieRepository);
-  });
+test('should get popular movies from the repository', () async {
+  when(mockMovieRepository.getPopularMovies())
+      .thenAnswer((_) async => Right(tMovieList));
+  // act
+  final result = await usecase();
+  // assert
+  expect(result, equals(Right(tMovieList)));
+  verify(mockMovieRepository.getPopularMovies());
+  verifyNoMoreInteractions(mockMovieRepository);
+});
 }
 

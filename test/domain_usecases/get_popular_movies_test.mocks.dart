@@ -6,6 +6,7 @@
 import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
+import 'package:movie_app/core_errors/server_failure.dart';
 import 'package:movie_app/domain/entities/movie.dart' as _i4;
 import 'package:movie_app/domain/repositories/movie_repository.dart' as _i2;
 
@@ -25,38 +26,40 @@ import 'package:movie_app/domain/repositories/movie_repository.dart' as _i2;
 /// A class which mocks [MovieRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
+import 'package:dartz/dartz.dart'; // make sure to import this package
+
 class MockMovieRepository extends _i1.Mock implements _i2.MovieRepository {
   @override
-  _i3.Future<List<_i4.Movie>> getPopularMovies() => (super.noSuchMethod(
-        Invocation.method(
-          #getPopularMovies,
-          [],
-        ),
-        returnValue: _i3.Future<List<_i4.Movie>>.value(<_i4.Movie>[]),
-        returnValueForMissingStub:
-            _i3.Future<List<_i4.Movie>>.value(<_i4.Movie>[]),
-      ) as _i3.Future<List<_i4.Movie>>);
+  _i3.Future<Either<Failure, List<_i4.Movie>>> getPopularMovies() => (super.noSuchMethod(
+    Invocation.method(
+      #getPopularMovies,
+      [],
+    ),
+    returnValue: _i3.Future<Either<Failure, List<_i4.Movie>>>.value(Right(<_i4.Movie>[])),
+    returnValueForMissingStub:
+    _i3.Future<Either<Failure, List<_i4.Movie>>>.value(Right(<_i4.Movie>[])),
+  ) as _i3.Future<Either<Failure, List<_i4.Movie>>>);
 
   @override
-  _i3.Future<List<_i4.Movie>> getTopRatedMovies() => (super.noSuchMethod(
-        Invocation.method(
-          #getTopRatedMovies,
-          [],
-        ),
-        returnValue: _i3.Future<List<_i4.Movie>>.value(<_i4.Movie>[]),
-        returnValueForMissingStub:
-            _i3.Future<List<_i4.Movie>>.value(<_i4.Movie>[]),
-      ) as _i3.Future<List<_i4.Movie>>);
+  _i3.Future<Either<Failure, List<_i4.Movie>>> getTopRatedMovies() => (super.noSuchMethod(
+    Invocation.method(
+      #getTopRatedMovies,
+      [],
+    ),
+    returnValue: _i3.Future<Either<Failure, List<_i4.Movie>>>.value(Right(<_i4.Movie>[])),
+    returnValueForMissingStub:
+    _i3.Future<Either<Failure, List<_i4.Movie>>>.value(Right(<_i4.Movie>[])),
+  ) as _i3.Future<Either<Failure, List<_i4.Movie>>>);
 
   @override
-  _i3.Future<List<_i4.Movie>> searchMovies(String? query) =>
+  _i3.Future<Either<Failure, List<_i4.Movie>>> searchMovies(String? query) =>
       (super.noSuchMethod(
         Invocation.method(
           #searchMovies,
           [query],
         ),
-        returnValue: _i3.Future<List<_i4.Movie>>.value(<_i4.Movie>[]),
+        returnValue: _i3.Future<Either<Failure, List<_i4.Movie>>>.value(Right(<_i4.Movie>[])),
         returnValueForMissingStub:
-            _i3.Future<List<_i4.Movie>>.value(<_i4.Movie>[]),
-      ) as _i3.Future<List<_i4.Movie>>);
+        _i3.Future<Either<Failure, List<_i4.Movie>>>.value(Right(<_i4.Movie>[])),
+      ) as _i3.Future<Either<Failure, List<_i4.Movie>>>);
 }

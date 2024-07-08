@@ -1,5 +1,6 @@
 
 
+import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -10,7 +11,7 @@ import 'package:movie_app/domain/usecases/search_movies.dart';
 import 'get_popular_movies_test.mocks.dart';
 
 
-// @GenerateNiceMocks([MockSpec<MovieRepository>()])
+@GenerateNiceMocks([MockSpec<MovieRepository>()])
 
 void main() {
 
@@ -42,11 +43,11 @@ void main() {
 
   test('should Search movies from the repository', () async {
     when(mockMovieRepository.searchMovies(any))
-        .thenAnswer((_) async => tMoviesList);
+        .thenAnswer((_) async => Right(tMoviesList));
     // act
     final result = await usecase(tQuery);
     // assert
-    expect(result, tMoviesList);
+    expect(result,  equals(Right(tMoviesList)));
     verify(mockMovieRepository.searchMovies(tQuery));
     verifyNoMoreInteractions(mockMovieRepository);
   });
