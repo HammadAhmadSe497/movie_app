@@ -1,7 +1,8 @@
-import 'package:movie_app/domain/usecases/get_top_rated_movies.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/presentation/bloc/top_rated_movies/top_rated_movie_event.dart';
 import 'package:movie_app/presentation/bloc/top_rated_movies/top_rated_movies_state.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../domain/usecases/get_top_rated_movies.dart';
 
 class TopRatedMoviesBloc extends Bloc<TopRatedMoviesEvent, TopRatedMoviesState>{
   final GetTopRatedMovies getTopRatedMovies;

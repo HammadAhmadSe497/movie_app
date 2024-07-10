@@ -5,6 +5,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:movie_app/domain/entities/movie.dart';
 import 'package:movie_app/domain/repositories/movie_repository.dart';
+import 'package:movie_app/domain/usecases/get_popular_movies.dart';
 import 'package:movie_app/domain/usecases/get_top_rated_movies.dart';
 
 import 'get_popular_movies_test.mocks.dart';
@@ -15,13 +16,13 @@ import 'get_popular_movies_test.mocks.dart';
 void main() {
 
   // arrange
-  late   GetTopRatedMovies usecase;
+  late   GetPopularMovies usecase;
   late   MockMovieRepository mockMovieRepository;
 
 
   setUp(() {
     mockMovieRepository = MockMovieRepository();
-    usecase = GetTopRatedMovies(mockMovieRepository);
+    usecase = GetPopularMovies(mockMovieRepository);
   });
   final tMoviesList = [
     Movie(
