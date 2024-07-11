@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app/presentation/bloc/popular_movies/popular_movies_bloc.dart';
 import 'package:movie_app/presentation/bloc/popular_movies/popular_movies_state.dart';
-import 'package:movie_app/domain/entities/Movie.dart';// Ensure consistent import path
 import 'package:movie_app/presentation/bloc/top_rated_movies/top_rated_movies_bloc.dart';
 import 'package:movie_app/presentation/bloc/top_rated_movies/top_rated_movies_state.dart';
 import 'package:movie_app/presentation/pages/movie_list.dart';
