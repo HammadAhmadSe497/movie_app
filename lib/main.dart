@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
             create: (context) => getIt<SearchMoviesBloc>(),
           ),
         ],
-        child: const HomeScreen(),
+        child: const SearchScreen(),
       ),
     );
   }

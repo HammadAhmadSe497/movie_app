@@ -33,13 +33,13 @@ class SearchScreen extends StatelessWidget {
         child: BlocBuilder<SearchMoviesBloc, SearchMoviesState>(
           builder: (context, state) {
             if (state is SearchMoviesInitial) {
-              return Text('Start searching...', style: TextStyle(color: Colors.white));
+              return Center(child: Text('Start searching...', style: TextStyle(color: Colors.white)));
             } else if (state is SearchMoviesLoading) {
-              return CircularProgressIndicator();
+              return Center(child: CircularProgressIndicator());
             } else if (state is SearchMoviesLoaded) {
               return _buildSearchResults(state.movies);  // Correct state.movies
             } else if (state is SearchMoviesError) {
-              return Text(state.message, style: TextStyle(color: Colors.red));
+              return Center(child: Text(state.message, style: TextStyle(color: Colors.red)));
             }
             return Container();
           },
