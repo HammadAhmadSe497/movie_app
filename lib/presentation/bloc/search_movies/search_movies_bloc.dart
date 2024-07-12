@@ -1,5 +1,6 @@
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app/domain/repositories/movie_repository.dart';
 import 'package:movie_app/domain/usecases/search_movies.dart';
 import 'package:movie_app/presentation/bloc/search_movies/search_movies_event.dart';
 import 'package:movie_app/presentation/bloc/search_movies/search_movies_state.dart';

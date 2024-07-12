@@ -22,7 +22,7 @@ class MovieCard extends StatelessWidget {
           image: NetworkImage('https://image.tmdb.org/t/p/w500/${movie.posterPath}'),
           fit: BoxFit.cover,
         ),
-      ),
+      )
     );
   }
 }

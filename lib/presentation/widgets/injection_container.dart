@@ -18,7 +18,7 @@ void init(){
   //bloc
   getIt.registerFactory(() => PopularMoviesBloc(getPopularMovies: getIt()));
   getIt.registerFactory(() => TopRatedMoviesBloc(getTopRatedMovies: getIt()));
-  getIt.registerFactory(() => SearchMoviesBloc(searchMovies: getIt()));
+  getIt.registerFactory(() => SearchMoviesBloc(searchMovies: getIt() ));
 
 
   //use cases
