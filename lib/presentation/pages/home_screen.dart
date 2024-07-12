@@ -20,38 +20,33 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: CustomScrollView(
-          slivers: [
-            SliverAppBar(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(90),
+          child: ClipRRect(
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(10),
+              bottomRight: Radius.circular(10.0),
+              topLeft: Radius.circular(10.0),
+              topRight: Radius.circular(10.0),
+            ),
+            child: AppBar(
               centerTitle: false,
               elevation: 0,
               toolbarHeight: 100,
-              backgroundColor: Colors.brown[300],
-              pinned: true,
-              flexibleSpace: FlexibleSpaceBar(
-                titlePadding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                background: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.brown[300],
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(20.0),
-                      bottomRight: Radius.circular(20.0),
-                    ),
+              backgroundColor: Colors.white,
+              title: const Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Hi Hammad 👋',
+                    textAlign: TextAlign.start,
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
-                ),
-                title: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Hi Hammad 👋',
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      'TDD - Movie App',
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
+                  Text(
+                    'TDD - Movie App',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                ],
               ),
               actions: [
                 Padding(
@@ -77,92 +72,90 @@ class HomeScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SliverList(
-              delegate: SliverChildListDelegate(
-                [
-                  Container(
-                    height: 290,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: NetworkImage(bckImage),
-                        fit: BoxFit.cover,
-                      ),
+          ),
+        ),
+        body: Container(
+          color: Colors.black,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Default Image
+                Container(
+                  height: 290,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(bckImage),
+                      fit: BoxFit.cover,
                     ),
-                    child: Stack(
-                      children: <Widget>[
-                        Positioned(
-                          bottom: 0,
-                          left: 0,
-                          right: 0,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              ElevatedButton(
-                                onPressed: () {},
-                                child: Text('Developed By Hammad'),
-                                style: ElevatedButton.styleFrom(
-                                  foregroundColor: Colors.white,
-                                  backgroundColor: Colors.black,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20), // Border radius
-                                  ),
+                  ),
+                  child: Stack(
+                    children: <Widget>[
+                      Positioned(
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            ElevatedButton(
+                              onPressed: () {},
+                              child: Text('Developed By Hammad'),
+                              style: ElevatedButton.styleFrom(
+                                foregroundColor: Colors.white,
+                                backgroundColor: Colors.black,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20), // Border radius
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                  SizedBox(height: 30,),
+                ),
+                SizedBox(height: 30,),
 
-                  // Top Rated Movies
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'Top Rated Movies',
-                      style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  BlocBuilder<TopRatedMoviesBloc, TopRatedMoviesState>(
-                    builder: (context, state) {
-                      if (state is TopRatedMoviesLoading) {
-                        return Center(child: CircularProgressIndicator());
-                      } else if (state is TopRatedMoviesLoaded) {
-                        return MoviesList(movies: state.movies);
-                      } else if (state is TopRatedMoviesError) {
-                        return Center(child: Text(state.message));
-                      }
-                      return Container();
-                    },
-                  ),
+                // Trending Movies
+                Text(
+                  'Top Rated Movies',
+                  style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                BlocBuilder<TopRatedMoviesBloc, TopRatedMoviesState>(
+                  builder: (context, state) {
+                    if (state is TopRatedMoviesLoading) {
+                      return CircularProgressIndicator();
+                    } else if (state is TopRatedMoviesLoaded) {
+                      return MoviesList(movies: state.movies);
+                    } else if (state is TopRatedMoviesError) {
+                      return Text(state.message);
+                    }
+                    return Container();
+                  },
+                ),
 
-                  SizedBox(height: 20,),
-
-                  // Popular Movies
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'Popular Movies',
-                      style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  BlocBuilder<PopularMoviesBloc, PopularMoviesState>(
-                    builder: (context, state) {
-                      if (state is PopularMoviesLoading) {
-                        return Center(child: CircularProgressIndicator());
-                      } else if (state is PopularMoviesLoaded) {
-                        return MoviesList(movies: state.movies);
-                      } else if (state is PopularMoviesError) {
-                        return Center(child: Text(state.message));
-                      }
-                      return Container();
-                    },
-                  ),
-                ],
-              ),
+                SizedBox(height: 20,),
+                // Popular Movies
+                Text(
+                  'Popular Movies',
+                  style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+                BlocBuilder<PopularMoviesBloc, PopularMoviesState>(
+                  builder: (context, state) {
+                    if (state is PopularMoviesLoading) {
+                      return CircularProgressIndicator();
+                    } else if (state is PopularMoviesLoaded) {
+                      return MoviesList(movies: state.movies);
+                    } else if (state is PopularMoviesError) {
+                      return Text(state.message);
+                    }
+                    return Container();
+                  },
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
